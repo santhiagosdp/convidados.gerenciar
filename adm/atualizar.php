@@ -16,6 +16,7 @@
 		// keep track post values
 		$name = $_POST['nome'];
 		$referencia = $_POST['referencia'];
+		$fone = $_POST['fone'];
 		// validate input
 		$valid = true;
 		if (empty($name)) {
@@ -27,22 +28,22 @@
 		if ($valid) {
 			$pdo = Database::connect();
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$sql = "UPDATE convidados set nome = ?, referencia = ? WHERE id = ?";
+			$sql = "UPDATE convidados set nome = ?, referencia = ?, fone = ? WHERE id = ?";
 			$q = $pdo->prepare($sql);
-			$q->execute(array($name,$referencia,$id));
+			$q->execute(array($name,$referencia,$fone,$id));
 			Database::disconnect();
 			header("Location: index.php");
 		}
 	} else {
 		$pdo = Database::connect();
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = "SELECT nome, referencia, codigo FROM convidados where id = ?";
+		$sql = "SELECT * FROM convidados where id = ?";
 		$q = $pdo->prepare($sql);
 		$q->execute(array($id));
 		$data = $q->fetch(PDO::FETCH_ASSOC);
 		$name = $data['nome'];
-		$email = $data['referencia'];
-		$mobile = $data['codigo'];
+		$fone = $data['fone'];
+		$referencia = $data['referencia'];
 		Database::disconnect();
 	}
 ?>
@@ -70,6 +71,12 @@
 			      		<span class="help-inline"><?php echo $nameError;?></span>
 			      	<?php endif; ?>
 			    </div>
+			    <div class="controls">
+			      	<input name="fone" type="text"  placeholder="Fone" value="<?php echo !empty($fone)?$fone:'';?>">
+			    </div>
+			    <div class="controls">
+			      	<input name="referencia" type="text"  placeholder="Dally ou Santhiago" value="<?php echo !empty($referencia)?$referencia:'';?>">
+			    </div>
 			  </div>
 			  <div class="form-actions">
 				  <button type="submit" class="btn btn-success">Update</button>
@@ -80,3 +87,4 @@
     </div> <!-- /container -->
   </body>
 </html>
+

@@ -29,11 +29,11 @@
 			<div class="row">
 				<table class=" table table-dark table-striped">
 					<thead>
-						<tr>
-					   <!-- <th>ID</th> -->
+						<tr align="center">
+					   <!-- <th align="center">ID</th> -->
 							<th>Nome</th>
 							<th>Telefone</th>
-							<!-- <th>Código</th>-->
+							<!-- <th align="center">Código</th>-->
 							<th>Situação</th>
 							<th>Opções</th>
 						</tr>
@@ -42,21 +42,24 @@
 						<?php 
 							include '../database.php';
 							$pdo = Database::connect();
-							$sql = 'SELECT id, nome, codigo, telefone, status FROM convidados ORDER BY nome';
+							$sql = 'SELECT * FROM convidados ORDER BY nome';
 							foreach ($pdo->query($sql) as $row) {
 								echo '<tr>';
 									/* echo '<td>'. $row['id'] . '</td>'; */
-									echo '<td>'. $row['nome'] . '</td>';
-									echo '<td>'. $row['telefone'] . '</td>';
+									echo '<td>'. $row['nome'] .' - '. $row['referencia'] .'</td>';
+									echo '<td align="center">'. $row['fone'] . '</td>';
 									/* echo '<td>'. $row['codigo'] . '</td>'; */
-									echo '<td><a class="btn btn-dark" href="status.php?id='.$row['id'].'&nowstatus='.$row['status'].'">'.$row['status'].'</a></td>';
-									echo '<td width=350>';
+									echo '<td><a class="btn btn-outline-primary" href="status.php?id='.$row['id'].'&nowstatus='.$row['status'].'">'.$row['status'].'</a></td>';
+									echo '<td align="center">';
 										/* echo '<a class="btn btn-success" href="gerar.php?id='.$row['id'].'&gerar=s">Gerar código</a>';  */
 										echo '&nbsp;';
 										echo '&nbsp;';
-										echo '<a align="center" class="btn btn-warning" href="atualizar.php?id='.$row['id'].'">Renomear</a>';
-										echo '&nbsp;';
-										echo '<a align="center" class="btn btn-danger" href="apagar.php?id='.$row['id'].'">Delete</a>';
+										echo '<a class="btn btn-outline-warning" href="atualizar.php?id='.$row['id'].'">Atualizar</a>';
+										echo '&nbsp;';echo '&nbsp;';
+										echo '&nbsp;';echo '&nbsp;';
+										echo '<a class="btn btn-outline-danger" href="apagar.php?id='.$row['id'].'">Delete</a>';
+										// echo '&nbsp;';
+										// echo '<a class="btn btn-outline-info" href="fone.php?id='.$row['id'].'">+ Telefone</a>';
 									echo '</td>';
 								echo '</tr>';
 							}

@@ -14,13 +14,15 @@
 			<h1 align="center" >Convidados</h1>
 			<p align="center">Confirmados</p>
 		 
-			<div class="row">
-				<div class="col"></div>
-				
-				<div class="col- 10 " align="center">
-					<a style="width: 200px; height: 50px" href="index.php" class="btn btn-dark"><b>Voltar</b></a>
+			<div class="row">				
+				<div class="col">
+					<a style="width: 200px; height: 50px" href="index.php" class="btn btn-dark"><b>Todos</b></a>
 				</div>
-				<div class="col"></div>
+				<div class="col- 10 ">
+					<a style="width: 200px; height: 50px" href="pendentes.php" class="btn btn-danger"><b>Pendentes</b></a>
+					<a style="width: 200px; height: 50px" href="conf.php" class="btn btn-success"><b>Confirmados</b></a>
+					<a style="width: 200px; height: 50px" href="indecisos.php" class="btn btn-warning"><b>Indecisos</b></a>
+				</div>
 			</div>
 			<br>
 			<div class="row">
